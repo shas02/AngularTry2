@@ -1,7 +1,9 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Post} from '../models/post';
+import {urls} from '../../user/constants/urls';
+import { IPost } from '../interfaces';
+;
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +14,22 @@ export class PostService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getPosts(): Observable<Post[]> {
-    return this.httpClient.get<Post[]>(this.url)
+  getPosts(): Observable<IPost[]> {
+    return this.httpClient.get<IPost[]>(this.url)
   }
 
-  getPost(id: string): Observable<Post> {
-    return this.httpClient.get<Post>(this.url + '/' + id);
+  getPost(id: string): Observable<IPost> {
+    return this.httpClient.get<IPost>(this.url + '/' + id);
   }
+
+  getByUserId(userId: number): Observable<IPost[]> {
+    return this.httpClient.get<IPost[]>(urls.posts, {
+      params: new HttpParams({
+        fromObject: {
+          userId
+        }
+      })
+    })
+  }
+
 }

@@ -1,4 +1,9 @@
 <div>
   <h3>{{post.id}}. {{post.title}}</h3>
   <p>{{post.body}}</p>
+
+  <button (click)="getComments()">Показати коментарі</button>
+</div>
+<div class="comments">
+  <router-outlet></router-outlet>
 </div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Post } from '../../models/post';
-import { PostService } from '../../services/post.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IPost } from '../../interfaces';
+import { PostService } from '../../services';
+
 
 @Component({
   selector: 'app-post-details',
@@ -10,9 +11,9 @@ import { PostService } from '../../services/post.service';
 })
 export class PostDetailsComponent implements OnInit {
 
-  post: Post;
+  post: IPost;
 
-  constructor(private activatedRoute: ActivatedRoute, private postService: PostService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private postService: PostService) {
     this.activatedRoute.params.subscribe(params => {
       this.postService.getPost(params['id']).subscribe(value => this.post = value);
     })
@@ -20,6 +21,10 @@ export class PostDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  getComments(): void {
+    this.router.navigate([this.post.id], {relativeTo: this.activatedRoute})
   }
 
 }

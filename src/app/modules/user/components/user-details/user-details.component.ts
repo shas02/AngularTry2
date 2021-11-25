@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {User} from '../../models/User';
+import {ActivatedRoute, Router} from '@angular/router';
+import { IUser } from '../../interfaces';
+
 import {UserService} from '../../services/user.service';
 
 @Component({
@@ -10,15 +11,19 @@ import {UserService} from '../../services/user.service';
 })
 export class UserDetailsComponent implements OnInit {
 
-  user: User;
+  user: IUser;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private userService: UserService) {
     this.activatedRoute.params.subscribe(params => {
       this.userService.getUser(params['id']).subscribe(value => this.user = value);
     })
   }
 
   ngOnInit(): void {
+  }
+
+  getPosts(): void {
+    this.router.navigate([this.user.id], {relativeTo: this.activatedRoute})
   }
 
 }

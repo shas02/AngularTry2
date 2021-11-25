@@ -8,20 +8,25 @@ import {UserDetailsComponent} from './components/user-details/user-details.compo
 import {UserService} from './services/user.service';
 import {HttpClientModule} from '@angular/common/http';
 import {ResolveService} from './services/resolve.service';
+import { PostsComponent } from './components/posts/posts.component';
+import { PostComponent } from './components/posts/post/post.component';
+import {PostResolveService, PostService } from './services';
 
 
 @NgModule({
   declarations: [
     UsersComponent,
     UserComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    PostsComponent,
+    PostComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     HttpClientModule
   ],
-  providers: [UserService, ResolveService]
+  providers: [UserService, ResolveService, PostService, PostResolveService]
 })
 export class UserModule {
 }

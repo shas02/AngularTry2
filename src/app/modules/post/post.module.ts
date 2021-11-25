@@ -6,21 +6,25 @@ import { PostsComponent } from './components/posts/posts.component';
 import { PostComponent } from './components/post/post.component';
 import { PostDetailsComponent } from './components/post-details/post-details.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PostService } from './services/post.service';
-import { PostResolveService } from './services/post-resolve.service';
+import { CommentsComponent } from './components/comments/comments.component';
+import { CommentComponent } from './components/comments/comment/comment.component';
+import {CommentResolveService, CommentService, PostResolveService, PostService } from './services';
+
 
 
 @NgModule({
   declarations: [
     PostsComponent,
     PostComponent,
-    PostDetailsComponent
+    PostDetailsComponent,
+    CommentsComponent,
+    CommentComponent
   ],
   imports: [
     CommonModule,
     PostRoutingModule,
     HttpClientModule
   ],
-  providers: [PostService, PostResolveService]
+  providers: [PostService, PostResolveService, CommentService, CommentResolveService]
 })
 export class PostModule { }

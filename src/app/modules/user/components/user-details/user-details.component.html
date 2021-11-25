@@ -1,4 +1,9 @@
 <div>
   <h3>{{user.id}}. {{user.name}}</h3>
   <p>{{user.email}}</p>
+  <button (click)="getPosts()">Показати пости</button>
+
+  <hr>
+  <router-outlet></router-outlet>
+  <hr>
 </div>
