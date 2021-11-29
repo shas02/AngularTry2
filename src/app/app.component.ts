@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataTransferService } from './app-service/data-transfer.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'AngularTry2';
+
+  constructor(private dataTransfer: DataTransferService) {
+    this.dataTransfer.store.getValue()
+  }
 }
