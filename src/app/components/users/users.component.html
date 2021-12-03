@@ -1,0 +1,10 @@
+<form [formGroup]="usersForm">
+  <select [formControl]="select">
+    <option *ngFor="let user of users" [value]='user.id'>
+      <app-user [user]="user"></app-user>
+    </option>
+
+  </select>
+  <button (click)="showDetails()">show details</button>
+</form>
+

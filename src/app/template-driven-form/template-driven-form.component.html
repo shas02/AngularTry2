@@ -1,0 +1,12 @@
+<form #myForm='ngForm' (ngSubmit)="submit(myForm)">
+  <div>
+    <input required minlength="3" #login='ngModel' name="login" type="text" [(ngModel)]="user.login">
+ <div *ngIf="login.errors?.['required']">required</div>
+ <div *ngIf="login.errors?.['minlength']?.actualLength < login.errors?.['minlength']?.requiredLength">length</div>
+  </div>
+  <div>
+    <input required #password='ngModel' name="password" type="text" [(ngModel)]="user.password">
+  </div>
+<!--  <button [disabled]="!myForm.valid">save</button>-->
+  <button>save</button>
+</form>
